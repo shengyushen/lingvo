@@ -55,6 +55,8 @@ RUN mkdir /bazel && \
     cd / && \
     rm -f /bazel/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
 
+# ssy 2019/9/27 remove this to prevent it from poping up "can not find error"
+#      model-pruning-google-research \
 ARG pip_dependencies='contextlib2 \
       Pillow \
       h5py \
@@ -62,7 +64,6 @@ ARG pip_dependencies='contextlib2 \
       jupyter \
       jupyter_http_over_ws \
       matplotlib \
-      model-pruning-google-research \
       numpy \
       pandas \
       recommonmark \
