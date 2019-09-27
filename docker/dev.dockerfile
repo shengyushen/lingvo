@@ -18,6 +18,7 @@ ARG base_image=$cpu_base_image
 
 # Pick up some TF dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common
+# ssy 2019/9/27 replacing python3-distutils by python3-distutils-extra
 RUN apt-get update && apt-get install -y --no-install-recommends \
         aria2 \
         build-essential \
@@ -30,7 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libzmq3-dev \
         lsof \
         pkg-config \
-        python3-distutils \
+        python3-distutils-extra \
         rename \
         rsync \
         sox \
