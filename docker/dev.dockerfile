@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libzmq3-dev \
         lsof \
         pkg-config \
-        python3-distutils-extra \
+        python3-distutils \
         rename \
         rsync \
         sox \
@@ -64,6 +64,7 @@ ARG pip_dependencies='contextlib2 \
       jupyter \
       jupyter_http_over_ws \
       matplotlib \
+      model-pruning-google-research \
       numpy \
       pandas \
       recommonmark \
