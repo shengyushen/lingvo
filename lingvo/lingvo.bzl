@@ -1,5 +1,6 @@
 """Implements custom rules for Lingvo."""
 
+# ssy 2019-9-29  define din ../WORKSPACE
 load("@subpar//:subpar.bzl", "par_binary")
 
 def tf_copts():
@@ -58,6 +59,7 @@ def lingvo_py_binary(*args, **kwargs):
     # Extract all files to a temporary directory is required to allow access to
     # the shared object containing lingvo ops.
     kwargs["zip_safe"] = False
+    # ssy 2019-9-29 this is defined in subpar above
     par_binary(*args, **kwargs)
 
 def custom_kernel_library(name, op_def_lib, srcs, hdrs = [], deps = []):

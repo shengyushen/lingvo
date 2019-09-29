@@ -180,6 +180,9 @@ py_library(
     ],
 )
 
+# ssy 2019-9-29 the palce to build trainer target
+# lingvo_py_binary is defined in lingvo.bzl
+# actually it will use par_binary defined in https://github.com/google/subpar to generate new par binary 
 lingvo_py_binary(
     name = "trainer",
     srcs = [":trainer_lib"],

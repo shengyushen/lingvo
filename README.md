@@ -27,6 +27,8 @@ docker run --rm $(test "$LINGVO_DEVICE" = "gpu" && echo "--runtime=nvidia") -it 
 bazel test -c opt --test_output=streamed //lingvo:trainer_test //lingvo:models_test
 ```
 
+ssy 2019-9-29: actually the 16.04 should be replaced by 18.04 ,please refer to buildDockerImage.sh
+
 ### Installing directly
 
 This is an alternative to using Docker as described in the section above.
