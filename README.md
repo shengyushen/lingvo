@@ -27,7 +27,7 @@ docker run --rm $(test "$LINGVO_DEVICE" = "gpu" && echo "--runtime=nvidia") -it 
 bazel test -c opt --test_output=streamed //lingvo:trainer_test //lingvo:models_test
 ```
 
-**ssy 2019-9-29: actually the 16.04 should be replaced by 18.04 ,please refer to buildDockerImage.sh**
+**SSY 2019-9-29: actually the 16.04 should be replaced by 18.04 ,please refer to buildDockerImage.sh**
 
 ### Installing directly
 
@@ -66,8 +66,8 @@ bazel build -c opt //lingvo:trainer
 bazel-bin/lingvo/trainer --run_locally=cpu --mode=sync --model=image.mnist.LeNet5 --logdir=/tmp/mnist/log --logtostderr
 ```
 
-**ssy bazel-bin/lingvo/trainer should be replaced by the path in the output of bazel_build**
-```also there are some new install in newsinstall.sh
+**SSY bazel-bin/lingvo/trainer should be replaced by the path in the output of bazel_build**
+**also there are some new install in newsinstall.sh**
 
 After a few seconds, the training accuracy should reach `85%` at step 100, as
 seen in the following line.
