@@ -409,11 +409,20 @@ class PipeliningLayer(SeqLayer):
 
     # Compute shapes of input and output tenors.
     input_tenors = _ToTuple(args)
+    print("args "+str(args),flush=True)
     mini_batch_size = input_tenors[0].get_shape().as_list()[p.batch_dim]
+    print("input_tenors[0] "+str(input_tenors[0]),flush=True)
     if p.state_dtype:
       state_dtype = p.state_dtype
     else:
       state_dtype = input_tenors[0].dtype
+    print("num_micro_batches "+str(p.num_micro_batches),flush=True)
+    print("mini_batch_size "+str(mini_batch_size),flush=True)
+    print("input_tenors[0].get_shape() "+str(input_tenors[0].get_shape()),flush=True)
+    print("p.batch_dim "+str(p.batch_dim),flush=True)
+    # SSY 2019-9-29 : preventing it from using 
+    #if mini_batch_size is None:
+    #  mini_batch_size = p.num_micro_batches
     if p.num_micro_batches > mini_batch_size:
       p.num_micro_batches = mini_batch_size
     micro_batch_size = mini_batch_size // p.num_micro_batches

@@ -506,6 +506,7 @@ class BaseTask(base_layer.BaseLayer):
           with tf.device(cluster.WorkerDeviceInModelSplit(0)):
             with tf.name_scope('tower_%d_%d' % (w_id, s_id)):
               batch = input_batch[split_id]
+              print("input_batch "+str(input_batch))
               metrics, per_example = self.FPropTower(theta_local, batch)
         all_metrics.append(metrics)
         all_per_example_tensors.append(per_example)
@@ -541,8 +542,11 @@ class BaseTask(base_layer.BaseLayer):
 
   def FPropDefaultTheta(self, input_batch=None):
     """Calls `FProp` with this layer's parameters."""
+    print("input_batch on FPropDefaultTheta 1 "+str(input_batch))
+    # it actually generate input_batch from GetInputBatch below
     if input_batch is None:
       input_batch = self.GetInputBatch()
+    print("input_batch on FPropDefaultTheta 2 "+str(input_batch))
     return self.FProp(self.theta, input_batch)
 
   def AdjustGradients(self, vars_gradients):

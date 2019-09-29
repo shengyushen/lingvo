@@ -267,19 +267,29 @@ class BaseInputGenerator(base_layer.BaseLayer):
       tensors in one split.
     """
     assert num_splits >= 1
+    print("num_splits "+str(num_splits))
 
     batch = self.GetPreprocessedInputBatch()
     if num_splits == 1:
       # Special case. No split is needed.
+      # this is the place the make 1 gpu different from 4 gpu
       return [batch]
 
     assert not py_utils.use_tpu()
+    print("batch "+str(batch))
+    print("batch.Flatten "+str(batch.Flatten))
+    print("num_splits "+str(num_splits))
+    # batch is ok without any ? its this step that get symbol ?
     field_split = ig_helper.SplitTensors(batch.Flatten(), num_splits)
+    print("field_split "+str(field_split))
     num_fields = len(field_split)
     ret = []
     for j in range(num_splits):
+      print("j "+str(j))
       split_flatten = [field_split[i][j] for i in range(num_fields)]
+      print("split_flatten "+str(split_flatten))
       split = batch.Pack(split_flatten)
+      print("split "+str(split))
       ret += [split]
     return ret
 

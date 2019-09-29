@@ -1327,8 +1327,10 @@ class GPipeTransformerLm(BaseLanguageModel):
       value and `state1` is the next recurrent state. Otherwise,
       `xent_output` only contains the softmax logits.
     """
+    print("inputs "+str(inputs))
     ids = py_utils.HasRank(inputs, 2)
     paddings = py_utils.HasShape(paddings, tf.shape(ids))
+    print("ids "+str(ids))
     per_example_xent, logits = self.stack.FProp(theta.stack, ids, paddings,
                                                 None, None, None, None,
                                                 labels.class_ids,

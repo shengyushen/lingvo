@@ -838,7 +838,7 @@ class GPipeTransformerStack(PipeliningLayer):
           'Need to specify src_segment_id if packed input is supported.')
       assert source_pos_id is not None, (
           'Need to specify src_pos_id for packed input and embeddings.')
-
+    print("source_input "+str(source_input),flush=True)
     logits = super(GPipeTransformerStack,
                    self).FProp(theta, source_input, source_paddings,
                                target_input, target_paddings, source_segment_id,

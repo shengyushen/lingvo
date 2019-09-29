@@ -96,6 +96,7 @@ class LanguageModel(base_model.BaseTask):
 
   def FPropTower(self, theta, input_batch):
     p = self.params
+    print("input_batch "+str(input_batch) )
     ids, paddings, labels_ids, weights = self._TrimIfPossibleThenTranspose(
         input_batch.ids, input_batch.paddings, input_batch.labels,
         input_batch.weights)

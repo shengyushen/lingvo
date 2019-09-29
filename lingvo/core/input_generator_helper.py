@@ -87,9 +87,16 @@ def SplitTensors(xs, num_splits):
   ], all_batch_dims)
 
   splits = ComputeSplits(tf.shape(xs[0])[0], num_splits)
+  print("splits "+str(splits))
   # add the above assertion into the compute graph
   splits = py_utils.with_dependencies([all_batch_dims], splits)
-  split_xs = [tf.split(axis=0, num_or_size_splits=splits, value=x) for x in xs]
+  print("splits 2 "+str(splits))
+  print("xs "+str(xs))
+  # this step get x
+  # splits is not the number of spilits, it is the 
+  #split_xs = [tf.split(axis=0, num_or_size_splits=splits, value=x) for x in xs]
+  split_xs = [tf.split(axis=0, num_or_size_splits=num_splits, value=x) for x in xs]
+  print("split_xs "+str(split_xs))
 
   return split_xs
 
