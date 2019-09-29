@@ -475,11 +475,15 @@ class Trainer(base_runner.BaseRunner):
         return global_step
 
       global_step = _WaitTillInit()
-
       status_interval_steps = 100
       next_status_step = 1
       eval_metrics = None
+      ssystep=0
       while True:
+        print("ssystep is "+str(ssystep),flush=True)
+        ssystep=ssystep+1
+        #print("loop 1",flush=True)
+        # SSY 2019-9-29 : this is the loop
         if (self._trial.ShouldStopAndMaybeReport(global_step, eval_metrics) or
             self._ShouldStop(sess, global_step)):
           tf.logging.info('Training finished.')
@@ -1563,6 +1567,7 @@ class RunnerManager(object):
     Returns:
       None.
     """
+    print("StartRunners 1",flush=True)
     threads = []
     tf.logging.info('Starting runners')
     for runner in runners:
@@ -1583,11 +1588,13 @@ class RunnerManager(object):
           tq.start()
           threads.append(tq)
     tf.logging.info('Waiting for runners to finish...')
+    print("StartRunners 2",flush=True)
     for t in threads:
       while True:
         t.join(1)
         if not t.isAlive():
           break
+    print("StartRunners 3",flush=True)
     tf.logging.info('All runners done.')
 
   def RunTrial(self, job, logdir, trial):
@@ -1751,6 +1758,7 @@ class RunnerManager(object):
 
   def Start(self):
     """Start the process."""
+    print("Start 1",flush=True)
     tf.logging.set_verbosity(tf.logging.INFO)
 
     # First try to see whether the model has been fetched by lingvo

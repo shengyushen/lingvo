@@ -16,7 +16,7 @@ docker build --tag tensorflow:lingvo $(test "$LINGVO_DEVICE" = "gpu" && echo "--
 # add my dir mapping from /home/ssy to /home/nfs1/ssy
 # also dont rm the container
 # this only need to run once, because it will generate lingvo name that can not be used again
-docker run  $(test "$LINGVO_DEVICE" = "gpu" && echo "--runtime=nvidia") -it -v ${LINGVO_DIR}:/tmp/lingvo -v /home/nfs1/ssy:/home/ssy -v ${HOME}/.gitconfig:/home/${USER}/.gitconfig:ro -p 6006:6006 -p 8888:8888 --name lingvo tensorflow:lingvo bash
+docker run  $(test "$LINGVO_DEVICE" = "gpu" && echo "--runtime=nvidia") -it -v ${LINGVO_DIR}:/tmp/lingvo -v /home/ubuntu:/home/ssy -v ${HOME}/.gitconfig:/home/${USER}/.gitconfig:ro -p 6006:6006 -p 8888:8888 --name lingvo tensorflow:lingvo bash
 
 # these are used very time to start lingvo
 # also change to lingvo1
