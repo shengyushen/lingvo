@@ -186,7 +186,9 @@ py_library(
 lingvo_py_binary(
     name = "trainer",
     srcs = [":trainer_lib"],
-    python_version = "PY2",
+    #python_version = "PY2",
+    # SSY 2019-9-29 : should use python3, because the docker file install lots of python3 packages
+    python_version = "PY3",
     srcs_version = "PY2AND3",
     deps = [
         ":model_imports",

@@ -66,7 +66,15 @@ bazel build -c opt //lingvo:trainer
 bazel-bin/lingvo/trainer --run_locally=cpu --mode=sync --model=image.mnist.LeNet5 --logdir=/tmp/mnist/log --logtostderr
 ```
 
-**SSY bazel-bin/lingvo/trainer should be replaced by the path in the output of bazel_build**
+**SSY 2019-9-29 : I should change lingvo/BUILD line 190 to use PY3
+**SSY 2019-9-29 : I also change it to use gpu according to lingvo/trainer.py
+
+```shell
+bazel build --config=cuda -c opt //lingvo:trainer
+bazel-bin/lingvo/trainer --run_locally=gpu --mode=sync --model=image.mnist.LeNet5 --logdir=/tmp/mnist/log --logtostderr
+```
+
+
 **also there are some new install in newsinstall.sh**
 
 After a few seconds, the training accuracy should reach `85%` at step 100, as

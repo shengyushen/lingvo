@@ -42,7 +42,9 @@ import six
 from six.moves import range
 from six.moves import zip
 
-from model_pruning.python import pruning
+#from model_pruning.python import pruning
+# ssy 2019-9-29 add lingvo.core. prefix
+from tensorflow.contrib.model_pruning.python import pruning
 # pylint: disable=g-direct-tensorflow-import
 from tensorflow.core.framework import node_def_pb2
 from tensorflow.core.protobuf import rewriter_config_pb2
