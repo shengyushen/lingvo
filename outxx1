@@ -1,0 +1,35 @@
+Start 1
+job controller
+common_args ('', '/tmp/mnist/log', 'grpc://localhost:34068', <lingvo.base_trial.NoOpTrial object at 0x7f94b52af470>)
+input_batch on FPropDefaultTheta 1 None
+num_splits 1
+input_batch on FPropDefaultTheta 2 [{'bucket_key': <tf.Tensor 'GenericInput:2' shape=<unknown> dtype=int32>, 'ids': <tf.Tensor 'AsciiToTokenId:0' shape=(32, 1024) dtype=int32>, 'labels': <tf.Tensor 'AsciiToTokenId:1' shape=(32, 1024) dtype=int32>, 'paddings': <tf.Tensor 'AsciiToTokenId:2' shape=(32, 1024) dtype=float32>, 'weights': <tf.Tensor 'sub_1:0' shape=(32, 1024) dtype=float32>, 'word_count': <tf.Tensor 'GenericInput:1' shape=(32,) dtype=int32>}]
+input_batch [{'bucket_key': <tf.Tensor 'GenericInput:2' shape=<unknown> dtype=int32>, 'ids': <tf.Tensor 'AsciiToTokenId:0' shape=(32, 1024) dtype=int32>, 'labels': <tf.Tensor 'AsciiToTokenId:1' shape=(32, 1024) dtype=int32>, 'paddings': <tf.Tensor 'AsciiToTokenId:2' shape=(32, 1024) dtype=float32>, 'weights': <tf.Tensor 'sub_1:0' shape=(32, 1024) dtype=float32>, 'word_count': <tf.Tensor 'GenericInput:1' shape=(32,) dtype=int32>}]
+input_batch {'bucket_key': <tf.Tensor 'GenericInput:2' shape=<unknown> dtype=int32>, 'ids': <tf.Tensor 'AsciiToTokenId:0' shape=(32, 1024) dtype=int32>, 'labels': <tf.Tensor 'AsciiToTokenId:1' shape=(32, 1024) dtype=int32>, 'paddings': <tf.Tensor 'AsciiToTokenId:2' shape=(32, 1024) dtype=float32>, 'weights': <tf.Tensor 'sub_1:0' shape=(32, 1024) dtype=float32>, 'word_count': <tf.Tensor 'GenericInput:1' shape=(32,) dtype=int32>}
+inputs Tensor("fprop/1bwds_wpm_level_lm/tower_0_0/transpose:0", shape=(1024, 32), dtype=int32, device=/job:local/replica:0/task:0/device:GPU:0)
+ids Tensor("fprop/1bwds_wpm_level_lm/tower_0_0/transpose:0", shape=(1024, 32), dtype=int32, device=/job:local/replica:0/task:0/device:GPU:0)
+source_input Tensor("fprop/1bwds_wpm_level_lm/tower_0_0/transpose:0", shape=(1024, 32), dtype=int32, device=/job:local/replica:0/task:0/device:GPU:0)
+args (<tf.Tensor 'fprop/1bwds_wpm_level_lm/tower_0_0/transpose:0' shape=(1024, 32) dtype=int32>, <tf.Tensor 'fprop/1bwds_wpm_level_lm/tower_0_0/Identity:0' shape=(1024, 32) dtype=float32>, None, None, None, None, None, None, None, None)
+input_tenors[0] Tensor("fprop/1bwds_wpm_level_lm/tower_0_0/transpose:0", shape=(1024, 32), dtype=int32, device=/job:local/replica:0/task:0/device:GPU:0)
+num_micro_batches 32
+mini_batch_size 32
+input_tenors[0].get_shape() (1024, 32)
+p.batch_dim 1
+job trainer_client
+common_args ('', '/tmp/mnist/log', 'grpc://localhost:34068', <lingvo.base_trial.NoOpTrial object at 0x7f94b52af470>)
+input_batch on FPropDefaultTheta 1 None
+num_splits 1
+input_batch on FPropDefaultTheta 2 [{'bucket_key': <tf.Tensor 'GenericInput:2' shape=<unknown> dtype=int32>, 'ids': <tf.Tensor 'AsciiToTokenId:0' shape=(32, 1024) dtype=int32>, 'labels': <tf.Tensor 'AsciiToTokenId:1' shape=(32, 1024) dtype=int32>, 'paddings': <tf.Tensor 'AsciiToTokenId:2' shape=(32, 1024) dtype=float32>, 'weights': <tf.Tensor 'sub_1:0' shape=(32, 1024) dtype=float32>, 'word_count': <tf.Tensor 'GenericInput:1' shape=(32,) dtype=int32>}]
+input_batch [{'bucket_key': <tf.Tensor 'GenericInput:2' shape=<unknown> dtype=int32>, 'ids': <tf.Tensor 'AsciiToTokenId:0' shape=(32, 1024) dtype=int32>, 'labels': <tf.Tensor 'AsciiToTokenId:1' shape=(32, 1024) dtype=int32>, 'paddings': <tf.Tensor 'AsciiToTokenId:2' shape=(32, 1024) dtype=float32>, 'weights': <tf.Tensor 'sub_1:0' shape=(32, 1024) dtype=float32>, 'word_count': <tf.Tensor 'GenericInput:1' shape=(32,) dtype=int32>}]
+input_batch {'bucket_key': <tf.Tensor 'GenericInput:2' shape=<unknown> dtype=int32>, 'ids': <tf.Tensor 'AsciiToTokenId:0' shape=(32, 1024) dtype=int32>, 'labels': <tf.Tensor 'AsciiToTokenId:1' shape=(32, 1024) dtype=int32>, 'paddings': <tf.Tensor 'AsciiToTokenId:2' shape=(32, 1024) dtype=float32>, 'weights': <tf.Tensor 'sub_1:0' shape=(32, 1024) dtype=float32>, 'word_count': <tf.Tensor 'GenericInput:1' shape=(32,) dtype=int32>}
+inputs Tensor("fprop/1bwds_wpm_level_lm/tower_0_0/transpose:0", shape=(1024, 32), dtype=int32, device=/job:local/replica:0/task:0/device:GPU:0)
+ids Tensor("fprop/1bwds_wpm_level_lm/tower_0_0/transpose:0", shape=(1024, 32), dtype=int32, device=/job:local/replica:0/task:0/device:GPU:0)
+source_input Tensor("fprop/1bwds_wpm_level_lm/tower_0_0/transpose:0", shape=(1024, 32), dtype=int32, device=/job:local/replica:0/task:0/device:GPU:0)
+args (<tf.Tensor 'fprop/1bwds_wpm_level_lm/tower_0_0/transpose:0' shape=(1024, 32) dtype=int32>, <tf.Tensor 'fprop/1bwds_wpm_level_lm/tower_0_0/Identity:0' shape=(1024, 32) dtype=float32>, None, None, None, None, None, None, None, None)
+input_tenors[0] Tensor("fprop/1bwds_wpm_level_lm/tower_0_0/transpose:0", shape=(1024, 32), dtype=int32, device=/job:local/replica:0/task:0/device:GPU:0)
+num_micro_batches 32
+mini_batch_size 32
+input_tenors[0].get_shape() (1024, 32)
+p.batch_dim 1
+StartRunners 1
+StartRunners 2

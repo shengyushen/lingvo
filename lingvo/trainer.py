@@ -462,6 +462,7 @@ class Trainer(base_runner.BaseRunner):
         try:
           global_step = sess.run(py_utils.GetGlobalStep())
         except tf.errors.FailedPreconditionError as e:
+          # SSY 2019-9-30 : already get to here but fial to get global_step
           tf.logging.info('Probably the expected race on global_step: %s', e)
           raise
         msg = 'step:%6d' % global_step
@@ -1500,17 +1501,21 @@ class RunnerManager(object):
 
     tf.logging.info('Job %s start', job)
     common_args = (model_task_name, logdir, tf_master, trial)
+    print("job "+str(job),flush=True)
+    print("common_args "+str(common_args),flush=True)
     if job == 'controller':
       cfg = self.GetParamsForDataset('controller', 'Train')
       return self.Controller(cfg, *common_args)
     elif job == 'trainer':
       cfg = self.GetParamsForDataset('trainer', 'Train')
+      print("_CreateRunner ",flush=True)
       return self.Trainer(cfg, *common_args)
     elif job == 'trainer_client':
       cfg = self.GetParamsForDataset('trainer_client', 'Train')
       if py_utils.use_tpu():
         return self.TrainerTpu(cfg, *common_args)
       else:
+        # trainer_client also use Trainer
         return self.Trainer(cfg, *common_args)
     elif job.startswith(evaler_job_name_prefix):
       dataset_name = job[len(evaler_job_name_prefix):]
@@ -1570,6 +1575,7 @@ class RunnerManager(object):
     print("StartRunners 1",flush=True)
     threads = []
     tf.logging.info('Starting runners')
+    # SSY 2019-9-30 : run runners
     for runner in runners:
       t = threading.Thread(target=runner.Start)
       t.daemon = True
