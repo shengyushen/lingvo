@@ -1444,8 +1444,14 @@ def GlobalStepContext(global_step_tensor):
 def GetGlobalStep():
   """Return the global_step."""
   if _GLOBAL_STEP_STACK:
+    # SSY 2019-9-30
+    print("_GLOBAL_STEP_STACK "+str(_GLOBAL_STEP_STACK),flush=True)
     return _GLOBAL_STEP_STACK[-1]
-  return tf.train.get_global_step()
+  # SSY 2019-9-30
+  xx=tf.train.get_global_step()
+  print("tf.train.get_global_step "+str(xx),flush=True)
+  #return tf.train.get_global_step()
+  return xx
 
 
 def GetOrCreateGlobalStepVar():
