@@ -1,0 +1,4 @@
+1 change PY2 to PY3
+2 use global init
+3 run download
+4 now OOM memory is not enough
