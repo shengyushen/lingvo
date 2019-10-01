@@ -36,6 +36,12 @@ docker build --tag tensorflow:lingvo $(test "$LINGVO_DEVICE" = "gpu" && echo "--
 docker run  $(test "$LINGVO_DEVICE" = "gpu" && echo "--runtime=nvidia") -it -v ${LINGVO_DIR}:/tmp/lingvo -v /home/nfs1/ssy:/home/ssy -v ${HOME}/.gitconfig:/home/${USER}/.gitconfig:ro -p 6006:6006 -p 8888:8888 --name lingvo tensorflow:lingvo bash
 bazel test -c opt --test_output=streamed //lingvo:trainer_test //lingvo:models_test
 ```
+
+
+**SSY 2019-10-1 : I find that the local variables list are empty, which the global variables contain all variable. and they are not initialized. So in lingvo/trainer.py 460, I add the global_variables_initializer to init **
+
+**SSY 2019-10-1 : I also find that the program automatically load the old check point that leads to mis matched errors , so I delete the /tmp/mnist/log before start up**
+
 ### Installing directly
 
 This is an alternative to using Docker as described in the section above.

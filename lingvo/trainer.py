@@ -291,6 +291,7 @@ class Controller(base_runner.BaseRunner):
     self._summary_writer.add_graph(self._graph)
     with tf.container(self._container_id), self._GetSession() as sess:
       gsteps = py_utils.GetGlobalStep()
+      # this gsteps  is also a graph element without value
       examples = self._model.total_examples
 
       if FLAGS.interactive:
@@ -454,13 +455,23 @@ class Trainer(base_runner.BaseRunner):
       sess.run(self.initialize_tables)
       # This initializes local variables.
       sess.run(self._initialize_local_vars)
+      # SSY 2019-10-1 : I add this global_variables_initializer to avoid uninitialized global_step
+      print("before global_variables_initializer ",flush=True)
+      xx=tf.global_variables_initializer()
+      print("after global_variables_initializer ",flush=True)
+      sess.run(xx)
+      print("after sess.run ",flush=True)
       global_step = None
 
+      # SSY 2019-10-1 : repeatedly run _WaitTillInit without calling for
       @py_utils.Retry(retry_value=(tf.errors.FailedPreconditionError,))
       def _WaitTillInit():
         """Wait until the model is ready."""
+        print("_WaitTillInit ",flush=True)
         try:
           global_step = sess.run(py_utils.GetGlobalStep())
+          # py_utils.GetGlobalStep is a graph element to be computed
+          # the returned global_step is the result of this graph element
         except tf.errors.FailedPreconditionError as e:
           # SSY 2019-9-30 : already get to here but fial to get global_step
           tf.logging.info('Probably the expected race on global_step: %s', e)
@@ -475,7 +486,9 @@ class Trainer(base_runner.BaseRunner):
               node_def=None, op=None, message=msg)
         return global_step
 
+      # SSY 2019-10-1: it seems not even reach here
       global_step = _WaitTillInit()
+      print("after _WaitTillInit ",flush=True)
       status_interval_steps = 100
       next_status_step = 1
       eval_metrics = None

@@ -52,6 +52,7 @@ def Retry(retry_value=Exception,
         try:
           return func(*args, **kwargs)
         except retry_value as e:
+          print("Wrapper retries "+str(retries)+" max_retries "+str(max_retries))
           if retries >= max_retries:
             raise
           time.sleep(delay)

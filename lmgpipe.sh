@@ -1,13 +1,13 @@
-# https://github.com/tensorflow/lingvo/issues/48
+#  https://github.com/tensorflow/lingvo/issues/48 tell us about the gpu setting
+
+LOGDIR=/tmp/mnist/log
+GPU_NUM=1
+
+# must first delete the log dir
+rm -rf ${LOGDIR}
 
 #nvprof -f --quiet --profile-api-trace none --print-gpu-trace --print-nvlink-topology --csv --log-file lmgpipe.csv -o lmgpipe.nvvp \
-#bazel-bin/lingvo/trainer --run_locally=gpu --mode=sync --model=lm.one_billion_wds.OneBWdsGPipeTransformerWPM --logdir=/tmp/mnist/log --logtostderr --worker_split_size=4
-
-
-#nvprof -f --quiet --profile-api-trace none --print-gpu-trace --print-nvlink-topology --csv --log-file lmgpipe.csv -o lmgpipe.nvvp \
-# 4 gpu have the same problem as that of 1 gpu
-#bazel-bin/lingvo/trainer --run_locally=gpu --mode=sync --model=lm.one_billion_wds.OneBWdsGPipeTransformerWPM --logdir=/tmp/mnist/log --logtostderr --controller_gpus=4 --worker_gpus=4 --worker_split_size=4 > outxx4 2> errxx4
-# 1 gpu have global step problem
-# the same problem even in 1x k80
-bazel-bin/lingvo/trainer --run_locally=gpu --mode=sync --model=lm.one_billion_wds.OneBWdsGPipeTransformerWPM --logdir=/tmp/mnist/log --logtostderr --controller_gpus=1 --worker_gpus=1 --worker_split_size=1 > outxx1 2> errxx1
+#bazel-bin/lingvo/trainer --run_locally=gpu --mode=sync --model=lm.one_billion_wds.OneBWdsGPipeTransformerWPM --logdir=${LOGDIR} --logtostderr --controller_gpus=${GPU_NUM} --worker_gpus=${GPU_NUM} --worker_split_size=${GPU_NUM} > outxx${GPU_NUM} 2> errxx${GPU_NUM}
+#bazel-bin/lingvo/trainer --run_locally=gpu --mode=sync --model=lm.one_billion_wds.OneBWdsGPipeTransformerWPM --logdir=${LOGDIR} --logtostderr --controller_gpus=${GPU_NUM} --worker_gpus=${GPU_NUM} --worker_split_size=${GPU_NUM} > outxx${GPU_NUM} 2> errxx${GPU_NUM}
+ bazel-bin/lingvo/trainer --run_locally=gpu --mode=sync --model=lm.one_billion_wds.OneBWdsGPipeTransformerWPM --logdir=${LOGDIR} --logtostderr                              --worker_gpus=${GPU_NUM} --worker_split_size=${GPU_NUM} > outxx${GPU_NUM} 2> errxx${GPU_NUM}
 

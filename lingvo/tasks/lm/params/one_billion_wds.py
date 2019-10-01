@@ -61,6 +61,7 @@ class WordLevelOneBwdsBase(base_model_params.SingleTaskModelParams):
     p.file_parallelism = 10
     p.file_pattern = 'text:' + os.path.join(
         cls.CORPUS_DIR, 'training-monolingual.tokenized.shuffled', 'news.en*')
+    print("Train one_billion "+str(p.file_pattern),flush=True)
     p.name = '1bwds_train_set'
     p.tokenizer = tokenizers.VocabFileTokenizer.Params()
     p.num_batcher_threads = 16
