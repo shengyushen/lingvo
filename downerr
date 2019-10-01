@@ -1,0 +1,47 @@
+Starting local Bazel server and connecting to it...
+Loading: 
+Loading: 0 packages loaded
+Analyzing: target //lingvo/tasks/lm/tools:download_lm1b (1 packages loaded, 0 targets configured)
+INFO: Analyzed target //lingvo/tasks/lm/tools:download_lm1b (19 packages loaded, 132 targets configured).
+Building: checking cached actions
+INFO: Found 1 target...
+INFO: Deleting stale sandbox base /root/.cache/bazel/_bazel_root/2905a3a02f6c37075f501fd02256249e/sandbox
+[4 / 5] [Prepa] BazelWorkspaceStatusAction stable-status.txt
+Target //lingvo/tasks/lm/tools:download_lm1b up-to-date:
+  bazel-bin/lingvo/tasks/lm/tools/download_lm1b
+INFO: Elapsed time: 3.621s, Critical Path: 0.04s
+INFO: 0 processes.
+INFO: Build completed successfully, 1 total action
+INFO: Running command line: bazel-bin/lingvo/tasks/lm/tools/download_lm1b
+INFO: Build completed successfully, 1 total action
+WARNING:tensorflow:
+
+  TensorFlow's `tf-nightly` package will soon be updated to TensorFlow 2.0.
+
+  Please upgrade your code to TensorFlow 2.0:
+    * https://www.tensorflow.org/beta/guide/migration_guide
+
+  Or install the latest stable TensorFlow 1.X release:
+    * `pip install -U "tensorflow==1.*"`
+
+  Otherwise your code may be broken by the change.
+
+  
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/tensorflow_core/python/compat/v2_compat.py:68: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+I1001 15:09:06.018518 140076009236288 download_lm1b.py:43] Generating vocab file. This may take a few minutes.
+Traceback (most recent call last):
+  File "/root/.cache/bazel/_bazel_root/2905a3a02f6c37075f501fd02256249e/execroot/__main__/bazel-out/k8-opt/bin/lingvo/tasks/lm/tools/download_lm1b.runfiles/__main__/lingvo/tasks/lm/tools/download_lm1b.py", line 64, in <module>
+    tf.app.run(main)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow_core/python/platform/app.py", line 40, in run
+    _run(main=main, argv=argv, flags_parser=_parse_flags_tolerate_undef)
+  File "/usr/local/lib/python3.6/dist-packages/absl/app.py", line 299, in run
+    _run_main(main, args)
+  File "/usr/local/lib/python3.6/dist-packages/absl/app.py", line 250, in _run_main
+    sys.exit(main(argv))
+  File "/root/.cache/bazel/_bazel_root/2905a3a02f6c37075f501fd02256249e/execroot/__main__/bazel-out/k8-opt/bin/lingvo/tasks/lm/tools/download_lm1b.runfiles/__main__/lingvo/tasks/lm/tools/download_lm1b.py", line 49, in main
+    for line in f:
+  File "/usr/lib/python3.6/encodings/ascii.py", line 26, in decode
+    return codecs.ascii_decode(input, self.errors)[0]
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc2 in position 2808: ordinal not in range(128)
