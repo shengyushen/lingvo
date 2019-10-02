@@ -499,7 +499,8 @@ class Trainer(base_runner.BaseRunner):
         #print("loop 1",flush=True)
         # SSY 2019-9-29 : this is the loop
         if (self._trial.ShouldStopAndMaybeReport(global_step, eval_metrics) or
-            self._ShouldStop(sess, global_step)):
+            self._ShouldStop(sess, global_step) or 
+            ssystep > 20):
           tf.logging.info('Training finished.')
           # Close all the queues so the enque threads can also finish.
           for close_op in self.close_queue_ops:

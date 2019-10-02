@@ -1,3 +1,14 @@
+1 uninstall old cuda
+2 install cuda 10.0 
+3 build docker image buildDockerImage.sh
+4 install bazel (already done in 3)
+https://docs.bazel.build/versions/master/install-ubuntu.html#install-with-installer-ubuntu
+4.1 install prerequest
+sudo apt-get install pkg-config zip g++ zlib1g-dev unzip python3
+4.2 down load bazel
+https//github.com/bazelbuild/bazel/releases/download/0.29.1/bazel-0.29.1-installer-linux-x86_64.sh
+
+
 1 change PY2 to PY3
 2 use global init
 3 run download
