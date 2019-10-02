@@ -189,7 +189,9 @@ class OneBWdsGPipeTransformerWPM(WordLevelOneBwdsBase):
   """LM using gpipe transformer."""
   VOCAB_SIZE = 32000
   EMBEDDING_DIM = 2048
-  BATCH_SIZE = 32
+  #BATCH_SIZE = 32
+  # SSY 2019-10-2 : this cause OOM on 1*k80 1*V100 and 4*V100, I reduce it to 16
+  BATCH_SIZE = 16
   MAX_TOKENS = 1024  # The max sequence length in one example.
 
   # GPIPE related params.
