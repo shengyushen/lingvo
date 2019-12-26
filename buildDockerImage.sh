@@ -4,9 +4,12 @@ sudo mkdir -p /tmp/lingvo/docker
 sudo cp ./docker/dev.dockerfile /tmp/lingvo/docker
 LINGVO_DIR="/tmp/lingvo"  # (change to the cloned lingvo directory, e.g. "$HOME/lingvo")
 LINGVO_DEVICE="gpu"  # (Leave empty to build and run CPU only docker)
-# this is the old one that use 1604
+# this is the old one that use 1604, but with cudnn runtime , something is missed
 #docker build --tag tensorflow:lingvo $(test "$LINGVO_DEVICE" = "gpu" && echo "--build-arg base_image=nvidia/cuda:10.0-cudnn7-runtime-ubuntu16.04") - < ${LINGVO_DIR}/docker/dev.dockerfile
-docker build --tag tensorflow:lingvo $(test "$LINGVO_DEVICE" = "gpu" && echo "--build-arg base_image=nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04") - < ${LINGVO_DIR}/docker/dev.dockerfile
+# on aws with both cudnn dev and 1804, OK
+#docker build --tag tensorflow:lingvo $(test "$LINGVO_DEVICE" = "gpu" && echo "--build-arg base_image=nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04") - < ${LINGVO_DIR}/docker/dev.dockerfile
+# this is on my own server, locally I dont have 1804
+docker build --build-arg http_proxy="http://s00380291:mtsxdyt118484Huawei_@128.5.95.6:8080" --build-arg https_proxy="https://s00380291:mtsxdyt118484Huawei_@128.5.95.6:8080" --tag tensorflow:lingvo $(test "$LINGVO_DEVICE" = "gpu" && echo "--build-arg base_image=nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04") - < ${LINGVO_DIR}/docker/dev.dockerfile
 
 
 #and the run the following lines behind proxy
